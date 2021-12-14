@@ -1,7 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import { Avatar, Button, Menu, MenuItem, Tab, Tabs } from "@mui/material";
+import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { H6 } from "../common/typography/Header";
+import NavTabs from "./NavTabs";
 
 const useStyles = makeStyles((theme) => ({
   navMenu: {
@@ -9,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     "&>button": {
       padding: 8,
+      margin: 8,
       TextAlign: "center",
       background: "#F5f5f5",
       borderRadius: 10,
@@ -42,7 +44,7 @@ const NavMenu = () => {
           <H6>Login</H6>
         </Button>
       ) : (
-        <Tab value={0} label="Login" href="login" />
+        <NavTabs tabs={["Register", "Login"]} />
       )}
 
       <Menu

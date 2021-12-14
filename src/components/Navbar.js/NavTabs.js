@@ -9,7 +9,7 @@ const NavTabs = ({ tabs }) => {
   return (
     <div>
       <Tabs value={value} onChange={handleChange} centered>
-        {tabs.map((elem) => (
+        {tabs?.map((elem) => (
           <Tab label={elem} />
         ))}
       </Tabs>

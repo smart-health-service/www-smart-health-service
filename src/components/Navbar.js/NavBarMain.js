@@ -1,14 +1,13 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core";
-
 import { ReactComponent as Logo } from "../../assets/icons/SmartHealthLogo.svg";
 import NavMenu from "./NavMenu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     // maxWidth: 1300,
-    height: 55,
+    height: "fit-content",
     width: "100%",
     position: "fixed",
     background: "#FFFFFF",
@@ -19,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      padding: 10,
       "&>svg": {
         cursor: "pointer",
+        padding: 8,
       },
     },
   },
@@ -43,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavBarMain = () => {
+const NavBarMain = ({ tabs }) => {
   const classes = useStyles();
 
   return (

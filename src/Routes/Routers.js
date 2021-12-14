@@ -7,6 +7,7 @@ import Loading from "../containers/Loading";
 const DashboardContainer = lazy(() => import("../containers/DashBoard"));
 const NotFound = lazy(() => import("../containers/NotFound"));
 const LandingPage = lazy(() => import("../containers/LandingPage"));
+const AuthContainer = lazy(() => import("../containers/AuthContainer"));
 
 let PrivateRouteArr = [
   {
@@ -24,6 +25,8 @@ const Routers = () => {
           <Routes>
             {/* public routes */}
             <Route exact path="" element={<LandingPage />} />
+            <Route exact path="/register" element={<AuthContainer />} />
+            <Route exact path="/login" element={<AuthContainer />} />
             {/* private routes */}
             {token &&
               PrivateRouteArr.map((elem) => (

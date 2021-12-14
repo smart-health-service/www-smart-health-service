@@ -4,27 +4,22 @@ import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
   scoutibleSubtitle1Root: {
-    color: theme.color.Black,
     fontSize: 14,
     lineHeight: "19.6px",
   },
   scoutibleSubtitle2Root: {
-    color: theme.color.Black,
     fontSize: 13,
     lineHeight: "18.2px",
   },
   scoutibleBody1Root: {
-    color: theme.color.Black,
     fontSize: 12,
     lineHeight: "16.8px",
   },
   scoutibleBody2Root: {
-    color: theme.color.Black,
     fontSize: 10,
     lineHeight: "14px",
   },
   scoutibleBody3Root: {
-    color: theme.color.Black,
     fontSize: 9,
     lineHeight: "12.6px",
   },
