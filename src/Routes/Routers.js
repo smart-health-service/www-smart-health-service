@@ -12,6 +12,7 @@ let PrivateRouteArr = [
   {
     component: <DashboardContainer />,
     path: "/dashboard",
+    key: "dashboard",
   },
 ];
 const Routers = () => {
@@ -26,7 +27,12 @@ const Routers = () => {
             {/* private routes */}
             {token &&
               PrivateRouteArr.map((elem) => (
-                <Route exact path={elem.path} element={elem.component} />
+                <Route
+                  exact
+                  path={elem.path}
+                  element={elem.component}
+                  key={elem.key}
+                />
               ))}
             {/* keet that last--- error 404 */}
             <Route path="*" exact element={<NotFound />} status={404} />
