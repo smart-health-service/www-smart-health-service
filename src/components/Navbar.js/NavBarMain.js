@@ -3,12 +3,21 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { makeStyles } from "@material-ui/core";
-import { Badge, IconButton, Menu, MenuItem } from "@mui/material";
+import {
+  Avatar,
+  Badge,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { ReactComponent as Logo } from "../../assets/icons/SmartHealthLogo.svg";
+import { H5, H6 } from "../common/typography/Header";
+import NavTabs from "./NavTabs";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,18 +34,32 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  navMenu: {
+    display: "flex",
+    alignItems: "center",
+    "&>button": {
+      padding: 8,
+      TextAlign: "center",
+      background: "#F5f5f5",
+      borderRadius: 10,
+      height: 35,
+      "&>div": {
+        height: 25,
+        width: 25,
+        marginRight: 5,
+      },
+    },
+  },
 }));
 
 const NavBarMain = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -44,45 +67,25 @@ const NavBarMain = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const token = localStorage.getItem("token");
   return (
     <div className={classes.root}>
       <Box>
         <Logo />
-        <Tabs value={value} onChange={handleChange} centered>
-          <Tab label="Dashboard" />
-          <Tab label="Calender" />
-          <Tab label="Appointments" />
-        </Tabs>
-        <div>
-          <IconButton
-            size="large"
-            aria-label="show 4 new mails"
-            color="inherit"
-          >
-            <Badge badgeContent={4} color="error">
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
-            <Badge badgeContent={17} color="error">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
+        <div className={classes.navMenu}>
+          {!token ? (
+            <Button onClick={handleMenu} color="inherit">
+              <Avatar />
+              <H6>Logim</H6>
+            </Button>
+          ) : (
+            <Tabs value={value} onChange={handleChange} centered>
+              <Tab label="Register" />
+              <Tab label="Login" />
+              {/* <Tab label="Appointments" /> */}
+            </Tabs>
+          )}
+
           <Menu
             id="menu-appbar"
             anchorEl={anchorEl}

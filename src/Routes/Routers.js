@@ -6,6 +6,7 @@ import Loading from "../containers/Loading";
 // components
 const DashboardContainer = lazy(() => import("../containers/DashBoard"));
 const NotFound = lazy(() => import("../containers/NotFound"));
+const LandingPage = lazy(() => import("../containers/LandingPage"));
 
 let PrivateRouteArr = [
   {
@@ -20,14 +21,14 @@ const Routers = () => {
       <Suspense fallback={<Loading />}>
         <Router>
           <Routes>
-            {/* <Route exact path="/dashboard" element={<DashboardContainer />} />{" "} */}
-
+            {/* public routes */}
+            <Route exact path="" element={<LandingPage />} />
+            {/* private routes */}
             {token &&
               PrivateRouteArr.map((elem) => (
                 <Route exact path={elem.path} element={elem.component} />
               ))}
-
-            {/* keet that last */}
+            {/* keet that last--- error 404 */}
             <Route path="*" exact element={<NotFound />} status={404} />
           </Routes>
         </Router>
