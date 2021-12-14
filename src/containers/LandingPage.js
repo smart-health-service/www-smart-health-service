@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
@@ -14,11 +15,12 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
   },
   backgroundImage: {
+    paddingTop: 140,
     background: `url(${process.env.PUBLIC_URL}/images/hero-bg.png)`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "bottom",
     backgroundSize: "cover",
-    minHeight: "90vh",
+    minHeight: "100vh",
   },
 }));
 const LandingPage = () => {

@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { makeStyles } from "@material-ui/core";
 import { ReactComponent as Logo } from "../../assets/icons/SmartHealthLogo.svg";
+import MobileSideBar from "./MobileSideBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,29 +26,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navMenu: {
-    display: "flex",
-    alignItems: "center",
-    "&>button": {
-      padding: 8,
-      TextAlign: "center",
-      background: "#F5f5f5",
-      borderRadius: 10,
-      height: 35,
-      "&>div": {
-        height: 25,
-        width: 25,
-        marginRight: 5,
-      },
+    [theme.breakpoints.down("sm")]: {
+      display: "none !important",
     },
   },
 }));
 var tabs = [
-  { name: "Home", value: "#home" },
-  { name: "About Us", value: "#about" },
-  { name: "Services", value: "#services" },
-  { name: "Doctors", value: "#doctors" },
-  { name: "Contact Us ", value: "#contact" },
-  { name: "Register ", value: "register" },
+  { name: "Home", value: "/#home" },
+  { name: "About Us", value: "/#about" },
+  { name: "Services", value: "/#services" },
+  { name: "Doctors", value: "/#doctors" },
+  { name: "Contact Us ", value: "/#contact" },
+  { name: "Register ", value: "/register" },
 ];
 const LandingNav = () => {
   const classes = useStyles();
@@ -59,14 +49,20 @@ const LandingNav = () => {
 
   React.useEffect(() => {
     if (value === 0 && window.location.href.split("/").at(-1) !== "home") {
-      window.location.href = "#home";
+      window.location.href = "/#home";
     }
-  }, []);
+  }, [value]);
   return (
     <div className={classes.root}>
       <Box>
+        <MobileSideBar />
         <Logo />
-        <Tabs value={value} onChange={handleChange} centered>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          centered
+          className={classes.navMenu}
+        >
           {tabs.map((elem) => (
             <Tab label={elem.name} href={elem.value} />
           ))}
