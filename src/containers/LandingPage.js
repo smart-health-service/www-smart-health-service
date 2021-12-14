@@ -10,7 +10,7 @@ import LandingNav from "../components/Navbar.js/LandingNav";
 
 const useStyles = makeStyles((theme) => ({
   landingPageRoot: {
-    // height: "calc(100vh - 48px)",
+    height: "100vh ",
     paddingTop: 49,
     overflow: "auto",
   },
@@ -28,7 +28,7 @@ const LandingPage = () => {
   return (
     <>
       <LandingNav />
-      <body className={classes.landingPageRoot}>
+      <div className={classes.landingPageRoot}>
         <div class="hero_area" className={classes.backgroundImage}>
           <section class="slider_section" id="home">
             <div
@@ -518,7 +518,7 @@ const LandingPage = () => {
             </div>
           </div>
         </footer>
-      </body>
+      </div>
     </>
   );
 };
