@@ -1,5 +1,4 @@
 import React from "react";
-import NavBarMain from "../components/Navbar.js/NavBarMain";
 import { makeStyles } from "@material-ui/core";
 import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
 import ArrowBackSharpIcon from "@mui/icons-material/ArrowBackSharp";
@@ -10,7 +9,8 @@ import LandingNav from "../components/Navbar.js/LandingNav";
 
 const useStyles = makeStyles((theme) => ({
   landingPageRoot: {
-    height: "calc(100vh - 49px)",
+    // height: "calc(100vh - 48px)",
+    paddingTop: 49,
     overflow: "auto",
   },
   backgroundImage: {

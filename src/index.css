@@ -29,13 +29,13 @@ code {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #d0d0d0;
+  background: #9c27b0;
   border-radius: 50px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #d0d0d0;
+  background: #9c27b0;
 }
 
 /* custom scrollbar - ends */

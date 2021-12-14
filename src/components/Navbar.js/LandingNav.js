@@ -3,19 +3,21 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { makeStyles } from "@material-ui/core";
-import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { ReactComponent as Logo } from "../../assets/icons/SmartHealthLogo.svg";
-import { H6 } from "../common/typography/Header";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // maxWidth: 1300,
     width: "100%",
+    height: 48,
+    position: "fixed",
+    background: "#FFFFFF",
+    zIndex: 1000,
+    boxShadow:
+      "0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 12px -5px rgb(156 39 176 / 46%)",
     "&>div": {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      boxShadow: "0 8px 16px 0 rgb(0 0 0 / 4%)",
       padding: "0 10px",
       "&>svg": {
         cursor: "pointer",
