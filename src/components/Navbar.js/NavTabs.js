@@ -8,7 +8,13 @@ const NavTabs = ({ tabs }) => {
   };
   return (
     <div>
-      <Tabs value={value} onChange={handleChange} centered>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        centered
+        textColor="secondary"
+        indicatorColor="secondary"
+      >
         {tabs?.map((elem) => (
           <Tab label={elem} />
         ))}

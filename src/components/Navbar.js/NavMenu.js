@@ -38,13 +38,11 @@ const NavMenu = () => {
   const token = localStorage.getItem("token");
   return (
     <div className={classes.navMenu}>
-      {token ? (
+      {token && (
         <Button onClick={handleMenu} color="inherit">
           <Avatar />
           <H6>Login</H6>
         </Button>
-      ) : (
-        <NavTabs tabs={["Register", "Login"]} />
       )}
 
       <Menu

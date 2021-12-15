@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
   },
   backgroundImage: {
-    paddingTop: 140,
     background: `url(${process.env.PUBLIC_URL}/images/hero-bg.png)`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "bottom",

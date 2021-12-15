@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import { makeStyles } from "@material-ui/core";
 import { ReactComponent as Logo } from "../../assets/icons/SmartHealthLogo.svg";
 import MobileSideBar from "./MobileSideBar";
+import { Link } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "center",
       justifyContent: "space-between",
       padding: "0 10px",
-      "&>svg": {
+      "&>a>svg": {
         cursor: "pointer",
       },
     },
@@ -56,12 +57,16 @@ const LandingNav = () => {
     <div className={classes.root}>
       <Box>
         <MobileSideBar />
-        <Logo />
+        <Link href="/" underline="none">
+          <Logo />
+        </Link>
         <Tabs
           value={value}
           onChange={handleChange}
           centered
           className={classes.navMenu}
+          textColor="secondary"
+          indicatorColor="secondary"
         >
           {tabs.map((elem) => (
             <Tab label={elem.name} href={elem.value} />

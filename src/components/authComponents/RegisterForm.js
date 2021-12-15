@@ -33,19 +33,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const LoginForm = () => {
+const RegisterForm = () => {
   const classes = useStyles();
   return (
     <Grid item xs={10} md={4} className={classes.loginRoot}>
       <div>
-        <H5 bold>Login</H5>
+        <H5 bold>Register</H5>
+        <CommonTextField variant="outlined" label="name" />
         <CommonTextField variant="outlined" label="email" />
         <CommonTextField variant="outlined" label="password" type="password" />
+        <CommonTextField
+          variant="outlined"
+          label="confirm password"
+          type="password"
+        />
         <Button color="primary">Get started</Button>
         <Body1 medium>
-          New Here?{" "}
-          <Link href="/register" underline="none">
-            Register
+          Already Member?{" "}
+          <Link href="/login" underline="none">
+            Login
           </Link>
         </Body1>
       </div>
@@ -53,4 +59,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

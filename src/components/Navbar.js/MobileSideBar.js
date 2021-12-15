@@ -9,6 +9,7 @@ import { IconButton } from "@mui/material";
 
 import { makeStyles } from "@material-ui/core";
 import classNames from "classnames";
+import { H5 } from "../common/typography/Header";
 
 const useStyles = makeStyles((theme) => ({
   sideNavRoot: {
@@ -69,7 +70,7 @@ export default function MobileSideBar() {
                   classes.activeTab
               )}
             >
-              <ListItemText primary={elem.name} />
+              <H5 style={{ color: "#9c27b0" }}>{elem.name} </H5>
             </ListItem>
           </a>
         ))}

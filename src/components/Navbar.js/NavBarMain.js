@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core";
 import { ReactComponent as Logo } from "../../assets/icons/SmartHealthLogo.svg";
 import NavMenu from "./NavMenu";
+import { Link } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      "&>svg": {
+      "&>a>svg": {
         cursor: "pointer",
-        padding: 8,
+        padding: 7,
       },
     },
   },
@@ -48,7 +49,10 @@ const NavBarMain = ({ tabs }) => {
   return (
     <div className={classes.root}>
       <Box>
-        <Logo />
+        <Link href="/" underline="none">
+          <Logo />
+        </Link>
+
         <NavMenu />
       </Box>
     </div>

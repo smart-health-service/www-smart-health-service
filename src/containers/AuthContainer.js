@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import NavBarMain from "../components/Navbar.js/NavBarMain";
 import LoginForm from "../components/authComponents/LoginForm";
+import RegisterForm from "../components/authComponents/RegisterForm";
 
 const useStyles = makeStyles((theme) => ({
   authRoot: {
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundRepeat: "no-repeat",
       backgroundPosition: "bottom",
       backgroundSize: "cover",
+      backgroundAttachment: "fixed",
       height: "100vh",
       // height: "95vh",
     },
@@ -22,11 +24,14 @@ const AuthContainer = () => {
   const classes = useStyles();
   return (
     <>
-      <NavBarMain tabs={["Register", "Login"]} />
+      <NavBarMain />
       <div className={classes.authRoot}>
         <Grid container>
           <Grid item md={8}></Grid>
-          <LoginForm />
+          {window.location.href.split("/").at(-1) === "login" && <LoginForm />}
+          {window.location.href.split("/").at(-1) === "register" && (
+            <RegisterForm />
+          )}
         </Grid>
       </div>
     </>
