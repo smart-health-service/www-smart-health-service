@@ -1,12 +1,20 @@
 import React from "react";
-import { H2 } from "../components/common/typography/Header";
+import DashboardMain from "../components/Dashboard/DashboardMain";
 import NavBarMain from "../components/Navbar.js/NavBarMain";
+import { makeStyles } from "@material-ui/core";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    overflow: "auto",
+  },
+}));
 const DashBoard = () => {
+  const classes = useStyles();
   return (
-    <div>
+    <div className={classes.root}>
       <NavBarMain />
-      <H2 medium></H2>
+      <DashboardMain />
     </div>
   );
 };
