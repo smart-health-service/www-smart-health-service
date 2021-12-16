@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { H6 } from "../common/typography/Header";
-import NavTabs from "./NavTabs";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   navMenu: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const NavMenu = () => {
+const NavMenu = ({ user }) => {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,13 +35,21 @@ const NavMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    setAnchorEl(null);
+    window.localStorage.clear("token");
+    window.localStorage.clear("persist:root");
+    window.location.href = "/login";
+  };
+
   const token = localStorage.getItem("token");
   return (
     <div className={classes.navMenu}>
       {token && (
         <Button onClick={handleMenu} color="inherit">
           <Avatar />
-          <H6>Login</H6>
+          <H6>{user?.name}</H6>
         </Button>
       )}
 
@@ -61,10 +69,17 @@ const NavMenu = () => {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>
   );
 };
 
-export default NavMenu;
+const mapStateToProps = (state, ownProps) => ({
+  user: state.user.userData,
+  userDataLoading: state.user.userDataLoading,
+  error: state.user.error,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(NavMenu);

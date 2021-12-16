@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { lazy } from "react";
 import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -17,7 +17,15 @@ let PrivateRouteArr = [
   },
 ];
 const Routers = () => {
-  const token = localStorage.getItem("token");
+  const [authToken, setauthToken] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setauthToken(token);
+  });
+
+  const loggedinUser = localStorage.getItem("persist:root");
+
   return (
     <div>
       <Suspense fallback={<Loading />}>
@@ -28,7 +36,7 @@ const Routers = () => {
             <Route exact path="/register" element={<AuthContainer />} />
             <Route exact path="/login" element={<AuthContainer />} />
             {/* private routes */}
-            {token &&
+            {authToken &&
               PrivateRouteArr.map((elem) => (
                 <Route
                   exact

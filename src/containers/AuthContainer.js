@@ -7,7 +7,7 @@ import RegisterForm from "../components/authComponents/RegisterForm";
 const useStyles = makeStyles((theme) => ({
   authRoot: {
     height: "100vh",
-    overflow: "hidden",
+    // overflow: "hidden",
     "&>div": {
       paddingTop: 50,
       background: `url(${process.env.PUBLIC_URL}/images/auth-bg.png)`,
