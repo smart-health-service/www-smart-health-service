@@ -4,8 +4,9 @@ import { H5 } from "../common/typography/Header";
 
 const useStyles = makeStyles((theme) => ({
   featuresRoot: {
-    height: 300,
+    height: 250,
     marginTop: 60,
+    justifyContent: "center",
   },
   cardMain: {
     boxShadow: "0px 2px 4px rgb(16 7 33 / 12%)",
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         padding: 20,
         borderRadius: "16px 16px 0 0",
         "&>img": {
-          height: 200,
+          height: 150,
         },
       },
     },
@@ -32,7 +33,7 @@ const FeatureRows = () => {
   const classes = useStyles();
   return (
     <Grid container spacing={2} className={classes.featuresRoot}>
-      <Grid item xs={4}>
+      <Grid item xs={3}>
         <div className={classes.cardMain}>
           <div>
             <div>
@@ -45,7 +46,7 @@ const FeatureRows = () => {
           </div>
         </div>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={3}>
         <div className={classes.cardMain}>
           <div>
             <div>
@@ -58,7 +59,7 @@ const FeatureRows = () => {
           </div>
         </div>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={3}>
         <div className={classes.cardMain}>
           <div>
             <div>

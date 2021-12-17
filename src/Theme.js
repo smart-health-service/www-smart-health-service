@@ -7,7 +7,7 @@ export const theme = createTheme({
     },
     secondary: {
       // This is green.A700 as hex.
-      main: "#9c27b0",
+      main: "#ff9f00",
     },
   },
 });

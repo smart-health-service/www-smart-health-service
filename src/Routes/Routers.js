@@ -8,12 +8,18 @@ const DashboardContainer = lazy(() => import("../containers/DashBoard"));
 const NotFound = lazy(() => import("../containers/NotFound"));
 const LandingPage = lazy(() => import("../containers/LandingPage"));
 const AuthContainer = lazy(() => import("../containers/AuthContainer"));
+const DoctorsContainer = lazy(() => import("../containers/DoctorsContainer"));
 
 let PrivateRouteArr = [
   {
     component: <DashboardContainer />,
     path: "/dashboard",
     key: "dashboard",
+  },
+  {
+    component: <DoctorsContainer />,
+    path: "/specialits",
+    key: "specialits",
   },
 ];
 const Routers = () => {
@@ -23,8 +29,6 @@ const Routers = () => {
     const token = localStorage.getItem("token");
     setauthToken(token);
   });
-
-  const loggedinUser = localStorage.getItem("persist:root");
 
   return (
     <div>
@@ -39,14 +43,13 @@ const Routers = () => {
             {authToken &&
               PrivateRouteArr.map((elem) => (
                 <Route
-                  exact
                   path={elem.path}
                   element={elem.component}
                   key={elem.key}
                 />
               ))}
             {/* keet that last--- error 404 */}
-            <Route path="*" exact element={<NotFound />} status={404} />
+            <Route path="*" element={<NotFound />} status={404} />
           </Routes>
         </Router>
       </Suspense>

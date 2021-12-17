@@ -7,11 +7,13 @@ import { connect } from "react-redux";
 import FeatureRows from "./FeatureRows";
 import DocCard from "../common/doctors/DocCard";
 import { Link } from "react-router-dom";
+import { Specialities } from "../common/Specialities";
+import Speciality from "../common/doctors/Speciality";
 
 const useStyles = makeStyles((theme) => ({
   dashboardRoot: {
     maxWidth: 1312,
-    height: "calc(100vh - 49px)",
+    height: "calc(100vh - 149px)",
     margin: "auto",
     paddingTop: 100,
     "&>div": {
@@ -52,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   doctorListHeader: {
+    marginTop: 60,
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
@@ -73,13 +76,15 @@ const DashboardMain = ({ user }) => {
           <AppointmentCard />
           <FeatureRows />
           <div className={classes.doctorListHeader}>
-            <H5 bold>Top Doctors</H5>
-            <Link to="/doctors">view more {">"}</Link>
+            <H5 bold>Our Specialities</H5>
+            <Link to="/specialits">view more {">"}</Link>
           </div>
           <Grid container spacing={2}>
-            {new Array(6).fill("").map((elem) => (
-              <DocCard />
-            ))}
+            <Grid container spacing={2}>
+              {Specialities.slice(0, 6).map((elem) => (
+                <Speciality data={elem} />
+              ))}
+            </Grid>
           </Grid>
         </Grid>
       </div>
