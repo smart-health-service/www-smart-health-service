@@ -29,12 +29,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const Speciality = ({ data }) => {
+const Speciality = ({ data, currenttab }) => {
   const classes = useStyles();
+
   return (
     <Grid item xs={6} sm={4} md={2} className={classes.docCardRoot}>
       <Link
-        href={`/specialits?type=${data?.title?.text.replaceAll(" ", "")}`}
+        href={`/${currenttab}?type=${data?.title?.text.replaceAll(" ", "")}`}
         underline="none"
       >
         <div>
