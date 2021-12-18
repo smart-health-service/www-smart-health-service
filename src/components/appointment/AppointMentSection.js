@@ -1,6 +1,31 @@
 import { Button, Card, Grid } from "@material-ui/core";
 import dayjs from "dayjs";
 import React, { Component, useEffect, useState } from "react";
+import { H5, H6 } from "../common/typography/Header";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  AppointmentRoot: {
+    height: 430,
+    overflow: "auto",
+  },
+  cardGroup: {
+    overflowY: "auto",
+    display: "flex",
+    width: "98%",
+    overflow: "auto",
+    "&>div": {
+      minWidth: 100,
+      cursor: "pointer",
+      "&>div": {
+        "&>h6": {
+          margin: "10px 0",
+          textAlign: "center",
+        },
+      },
+    },
+  },
+}));
 
 const timeSlots = [
   {
@@ -51,6 +76,7 @@ const availableTypes = [
   },
 ];
 function AppointMentSection() {
+  const classes = useStyles();
   const [selectedType, setselectedType] = useState("");
   const [selectedSlot, setselectedSlot] = useState("");
   const [timeSlots, settimeSlots] = useState([]);
@@ -79,7 +105,7 @@ function AppointMentSection() {
 
   return (
     <div>
-      <div className="is-full-width">
+      <div className={classes.AppointmentRoot}>
         <AppointmentTypeComponent
           selectedType={selectedType}
           timeSlots={timeSlots}
@@ -206,7 +232,7 @@ export const SlotComponent = ({
       <div className="is-full-width">{timeSlotsItems}</div>
       <div
         className="is-full-width is-center"
-        style={{ marginTop: 48, margin: 8 }}
+        style={{ marginTop: 38, margin: 8 }}
       >
         {submitButton}
       </div>
@@ -227,7 +253,7 @@ const CalendarComponent = ({
 }) => {
   //   const _this = this;
   //     setState({ days: days, selectedDay: null });
-
+  const classes = useStyles();
   const selectDateClicked = (day) => {
     let selectedDay = null;
     const updatedDays = days.map((oldDay) => {
@@ -273,9 +299,7 @@ const CalendarComponent = ({
 
   return (
     <div>
-      <Grid container className="calendar is-full-width">
-        {daysComponent}
-      </Grid>
+      <Grid className={classes.cardGroup}>{daysComponent}</Grid>
       <div className="slot is-full-width">{appointmentSlotComponent}</div>
     </div>
   );
@@ -283,7 +307,7 @@ const CalendarComponent = ({
 
 const DayComponent = ({ key, day, selectDateClicked }) => {
   const isSelected = day.isSelected;
-
+  const classes = useStyles();
   const dateObject = day.date;
 
   const date = dateObject.date();
@@ -294,31 +318,16 @@ const DayComponent = ({ key, day, selectDateClicked }) => {
     <Grid
       item
       xm={3}
-      className={`card day ${isSelected ? "selected" : ""}`}
       style={{ width: 80, margin: 4 }}
       onClick={(e) => {
         selectDateClicked(day);
       }}
     >
       <Card>
-        <p
-          className="text-center is-marginless is-paddingless"
-          style={{ fontSize: "small" }}
-        >
-          {month}
-        </p>
-        <p
-          className="text-center bold is-marginless"
-          style={{ fontSize: "large" }}
-        >
-          {date}
-        </p>
-        <p
-          className="text-center is-marginless is-paddingless"
-          style={{ fontSize: "small" }}
-        >
-          {year}
-        </p>
+        <H6 bold>{month}</H6>
+
+        <H6 bold>{date}</H6>
+        <H6 bold>{year}</H6>
       </Card>
     </Grid>
   );
@@ -378,13 +387,8 @@ const AppointmentTypeComponent = ({
 
   return (
     <div className="is-full-width">
-      <h2
-        className="text-uppercase text-primary"
-        style={{ fontWeight: "lighter", marginLeft: 8 }}
-      >
-        Appointment
-      </h2>
-      <div className="is-full-width" style={{ marginBottom: 8 }}>
+      <h2>Appointment</h2>
+      <div className="is-full-width" style={{ marginBottom: 4 }}>
         {availableTypes.map((appointmentType) => (
           <Button
             key={appointmentType.clinicId}

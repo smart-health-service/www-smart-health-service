@@ -11,9 +11,11 @@ const AuthContainer = lazy(() => import("../containers/AuthContainer"));
 const SpecialityContainer = lazy(() =>
   import("../containers/SpecialityContainer")
 );
-
 const AppointmentContainer = lazy(() =>
   import("../containers/AppointmentContainer")
+);
+const DocProfileContainer = lazy(() =>
+  import("../containers/DocProfileContainer")
 );
 
 let PrivateRouteArr = [
@@ -36,6 +38,11 @@ let PrivateRouteArr = [
     component: <AppointmentContainer />,
     path: "/appointment",
     key: "appointment",
+  },
+  {
+    component: <DocProfileContainer />,
+    path: "/doc-profile",
+    key: "docProfile",
   },
 ];
 const Routers = () => {

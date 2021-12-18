@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Grid, makeStyles } from "@material-ui/core";
+import { Button, Grid, Link, makeStyles } from "@material-ui/core";
 import { H5, H6 } from "../common/typography/Header";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   dashboardAppointmentCard: {
@@ -40,7 +39,7 @@ const AppointmentCard = () => {
           please indicate weather you would like to book a time or specific
           doctor
         </H6>
-        <Link to="/appointment">
+        <Link href="/appointment" underline="none">
           <Button variant="contained" color="primary">
             Book a Time
           </Button>{" "}

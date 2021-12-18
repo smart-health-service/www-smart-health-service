@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px 0",
     "&>button": {
       width: "48%",
+      maxWidth: 130,
     },
   },
   docData: {
@@ -76,7 +77,8 @@ const DocCard = () => {
           <Button color="primary" variant="outlined">
             Know More
           </Button>
-          <Link href="/appointment?id=book-appointment" underline="none">
+
+          <Link href="/doc-profile" underline="none">
             <Button color="secondary" variant="contained">
               Consult Now
             </Button>
