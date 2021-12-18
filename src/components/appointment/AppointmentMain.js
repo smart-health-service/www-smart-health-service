@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     height: "calc(100vh - 100px)",
     background: "#FFFFFF",
     marginTop: 90,
-    maxWidth: 1312,
+    // maxWidth: 1312,
     margin: "0 auto",
     boxShadow: "0px 2px 4px rgb(16 7 33 / 12%)",
     borderRadius: 16,
@@ -121,7 +121,6 @@ const AppointmentMain = () => {
             </div>
           </div>
         </div>
-        <AppointMentSection />
       </div>
     </div>
   );
