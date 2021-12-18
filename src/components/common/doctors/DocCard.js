@@ -3,6 +3,7 @@ import { Button, Grid, makeStyles } from "@material-ui/core";
 import { H5, H6 } from "../typography/Header";
 import { Body1, Body2, Subtitle1 } from "../typography/Typography";
 import TextsmsIcon from "@mui/icons-material/Textsms";
+import { Link } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   docCardRoot: {
@@ -75,9 +76,11 @@ const DocCard = () => {
           <Button color="primary" variant="outlined">
             Know More
           </Button>
-          <Button color="secondary" variant="contained">
-            Consult Now
-          </Button>
+          <Link href="/appointment?id=book-appointment" underline="none">
+            <Button color="secondary" variant="contained">
+              Consult Now
+            </Button>
+          </Link>
         </div>
       </div>
     </Grid>

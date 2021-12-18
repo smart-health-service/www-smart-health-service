@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
   },
 }));
-const DoctorsContainer = () => {
+const SpecialityContainer = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -19,4 +19,4 @@ const DoctorsContainer = () => {
   );
 };
 
-export default DoctorsContainer;
+export default SpecialityContainer;

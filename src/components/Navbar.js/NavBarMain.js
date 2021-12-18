@@ -7,7 +7,7 @@ import { Link } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // maxWidth: 1300,
+    top: 0,
     height: "fit-content",
     width: "100%",
     position: "fixed",
@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow:
       "0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 12px -5px rgb(33 33 33 / 46%)",
     "&>div": {
+      maxWidth: 1312,
+      margin: "0 auto",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",

@@ -42,7 +42,7 @@ const FeatureRows = () => {
                 alt="appointment"
               />
             </div>
-            <H5 bold>Clinic Visit</H5>
+            <H5 bold>Medical Checkup </H5>
           </div>
         </div>
       </Grid>

@@ -174,3 +174,97 @@ export const Specialities = [
     title: { text: "Surgical Gastroenterologist" },
   },
 ];
+
+export const TestSpecialities = [
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=pages/Vitamin-20190619.jpg",
+    },
+    title: { text: "Vitamin Profile" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=pages/Thyroid-Care-31072019.jpg",
+    },
+    title: { text: "Thyroid Profile" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=homePage/gridViewTwoV2/diwaliha_4.jpg",
+    },
+    title: { text: "Diabetes Screening" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=homePage/gridViewTwoV2/PCOD-28-02-2020.jpg",
+    },
+    title: { text: "PCOD Tes" },
+  },
+
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=homePage/gridViewTwoV2/Liver-Function-Test_08042020.jpg",
+    },
+    title: { text: "Liver Function Test" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=homePage/gridViewTwoV2/Kidney-Function-Test_08042020.jpg",
+    },
+    title: { text: "Kidney Function Test" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=pages/Advanced-Thyroid-Care-31072019.jpg",
+    },
+    title: { text: "Advanced Thyroid Care" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=pages/Vitamin-D-Test-16082019.jpg",
+    },
+    title: { text: "Vitamin D Test" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=homePage/gridViewTwoV2/HbA1c_08042020.jpg",
+    },
+    title: { text: "HbA1c" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=homePage/gridViewTwoV2/diwaliha_6.jpg",
+    },
+    title: { text: "Lipid Profile" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/download/SalesPackage/COVID-RTPCR-PLP.jpg",
+    },
+    title: { text: "COVID19 RT-PCR Test" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=pages/Complete-Blood-Count-16082019.jpg",
+    },
+    title: { text: "Complete Blood Count Test" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=pages/Pregnancy-Test-16082019.jpg",
+    },
+    title: { text: "Pregnancy Test" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=pages/Vitamin-B12-Test-16082019.jpg",
+    },
+    title: { text: "Vitamin B12 Test" },
+  },
+  {
+    image: {
+      url: "https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=pages/STD-Risk-Assessment-31072019.jpg",
+    },
+    title: { text: "STD Risk Assessment" },
+  },
+];

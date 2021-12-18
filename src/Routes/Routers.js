@@ -8,7 +8,13 @@ const DashboardContainer = lazy(() => import("../containers/DashBoard"));
 const NotFound = lazy(() => import("../containers/NotFound"));
 const LandingPage = lazy(() => import("../containers/LandingPage"));
 const AuthContainer = lazy(() => import("../containers/AuthContainer"));
-const DoctorsContainer = lazy(() => import("../containers/DoctorsContainer"));
+const SpecialityContainer = lazy(() =>
+  import("../containers/SpecialityContainer")
+);
+
+const AppointmentContainer = lazy(() =>
+  import("../containers/AppointmentContainer")
+);
 
 let PrivateRouteArr = [
   {
@@ -17,9 +23,19 @@ let PrivateRouteArr = [
     key: "dashboard",
   },
   {
-    component: <DoctorsContainer />,
-    path: "/specialits",
-    key: "specialits",
+    component: <SpecialityContainer />,
+    path: "/doc-specialits",
+    key: "DocSpecialits",
+  },
+  {
+    component: <SpecialityContainer />,
+    path: "/test-specialits",
+    key: "TestSecialits",
+  },
+  {
+    component: <AppointmentContainer />,
+    path: "/appointment",
+    key: "appointment",
   },
 ];
 const Routers = () => {
