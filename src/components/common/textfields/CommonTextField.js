@@ -29,14 +29,13 @@ const CommonTextField = ({
           "aria-label": "naked",
         }}
         variant="outlined"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">{startIcon}</InputAdornment>
-          ),
-          endtAdornment: (
-            <InputAdornment position="end"> {endIcon}</InputAdornment>
-          ),
-        }}
+        InputProps={
+          startIcon && {
+            startAdornment: (
+              <InputAdornment position="start">{startIcon}</InputAdornment>
+            ),
+          }
+        }
         {...other}
       />
     </div>
