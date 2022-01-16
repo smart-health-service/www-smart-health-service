@@ -4,11 +4,10 @@ import { Grid, makeStyles } from "@material-ui/core";
 import { H1, H5 } from "../common/typography/Header";
 import AppointmentCard from "./AppointmentCard";
 import { connect } from "react-redux";
-import FeatureRows from "./FeatureRows";
-import DocCard from "../common/doctors/DocCard";
 import { Link } from "react-router-dom";
 import { Specialities } from "../common/Specialities";
 import Speciality from "../common/doctors/Speciality";
+import ChatBot from "../../components/chatbot/ChantBotmain";
 
 const useStyles = makeStyles((theme) => ({
   dashboardRoot: {
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   dashboardTop: {
-    height: 400,
+    height: 180,
     width: "100%",
     borderRadius: "16px 16px 0 0 ",
     background: `url(${process.env.PUBLIC_URL}/images/dashboard-bg.png)`,
@@ -41,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   dashboardMain: {
-    padding: 16,
+    padding: " 0 16px 16px 16px",
+    borderRadius: "0 0 16px 16px",
     height: "fit-content",
     "&>div": {
       "&>h5": {
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   doctorListHeader: {
-    marginTop: 60,
+    marginTop: 16,
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
@@ -65,30 +65,32 @@ const useStyles = makeStyles((theme) => ({
 const DashboardMain = ({ user }) => {
   const classes = useStyles();
   return (
-    <Grid container className={classes.dashboardRoot}>
-      <div>
-        <div className={classes.dashboardTop}>
-          <div>
-            <H1 bold>Welcome {user?.name}..!</H1>
+    <>
+      <Grid container className={classes.dashboardRoot}>
+        <div>
+          <div className={classes.dashboardTop}>
+            <div>
+              <H1 bold>Welcome {user?.name}..!</H1>
+            </div>
           </div>
-        </div>
-        <Grid container className={classes.dashboardMain}>
-          <AppointmentCard />
-          <FeatureRows />
-          <div className={classes.doctorListHeader}>
-            <H5 bold>Our Specialities</H5>
-            <Link to="/doc-specialits">view more {">"}</Link>
-          </div>
-          <Grid container spacing={2}>
+          <Grid container className={classes.dashboardMain}>
+            <AppointmentCard />
+            {/* <FeatureRows /> */}
+            <div className={classes.doctorListHeader}>
+              <H5 bold>Our Specialities</H5>
+              <Link to="/doc-specialits">view more {">"}</Link>
+            </div>
             <Grid container spacing={2}>
-              {Specialities.slice(0, 6).map((elem) => (
-                <Speciality data={elem} />
-              ))}
+              <Grid container spacing={2}>
+                {Specialities.slice(0, 6).map((elem) => (
+                  <Speciality data={elem} currenttab={"doc-specialits"} />
+                ))}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </div>
-    </Grid>
+        </div>
+      </Grid>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 import DashboardMain from "../components/Dashboard/DashboardMain";
 import NavBarMain from "../components/Navbar.js/NavBarMain";
 import { makeStyles } from "@material-ui/core";
+import ChatBot from "../components/chatbot/ChantBotmain";
 
 const useStyles = makeStyles((theme) => ({
   root: {

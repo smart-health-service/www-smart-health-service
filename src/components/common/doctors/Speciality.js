@@ -5,6 +5,7 @@ import { Body1 } from "../typography/Typography";
 
 const useStyles = makeStyles((theme) => ({
   docCardRoot: {
+    borderRadius: 16,
     background: "#FFFFFF",
     "&>a": {
       textDecoration: "none",
