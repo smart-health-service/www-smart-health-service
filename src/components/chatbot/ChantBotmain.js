@@ -25,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  chatBotContainer: {
+    "&>div": {
+      "&>div": {
+        maxWidth: "90%",
+      },
+    },
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -60,14 +67,15 @@ export default function ChatBot() {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        className={classes.chatBotContainer}
       >
-        <DialogContent>
-          <Chatbot
-            config={config}
-            actionProvider={ActionProvider}
-            messageParser={MessageParser}
-          />
-        </DialogContent>
+        {/* <DialogContent> */}
+        <Chatbot
+          config={config}
+          actionProvider={ActionProvider}
+          messageParser={MessageParser}
+        />
+        {/* </DialogContent> */}
       </Dialog>
     </div>
   );

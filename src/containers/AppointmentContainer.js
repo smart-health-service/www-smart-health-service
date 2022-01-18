@@ -9,6 +9,7 @@ export class AppointmentContainer extends Component {
     return (
       <div>
         <NavBarMain />
+        <AppointmentMain />
       </div>
     );
   }

@@ -1,34 +1,33 @@
+// in config.js
+import axios from "axios";
+import { createChatBotMessage } from "react-chatbot-kit";
 class ActionProvider {
-  constructor(createChatBotMessage, setStateFunc) {
-    this.createChatBotMessage = createChatBotMessage;
+  constructor(createChatbotMessage, setStateFunc, createClientMessage) {
+    // this.createChatbotMessage = createChatbotMessage;
     this.setState = setStateFunc;
+    this.createClientMessage = createClientMessage;
   }
 
-  // new method
-  greet() {
-    const greetingMessage = this.createChatBotMessage("Hi, friend.");
-    this.updateChatbotState(greetingMessage);
-  }
+  handleResponse(messages) {
+    const message = createChatBotMessage(messages);
 
-  handleJavascriptList = () => {
-    const message = this.createChatBotMessage(
-      "Fantastic, I've got the following resources for you on Javascript:",
-      {
-        widget: "javascriptLinks",
-      }
-    );
-
-    this.updateChatbotState(message);
-  };
-
-  updateChatbotState(message) {
-    // NOTICE: This function is set in the constructor, and is passed in from the top level Chatbot component. The setState function here actually manipulates the top level state of the Chatbot, so it's important that we make sure that we preserve the previous state.
-
-    this.setState((prevState) => ({
-      ...prevState,
-      messages: [...prevState.messages, message],
+    this.setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, message],
     }));
   }
+
+  // handleResponse = (message) => async (dispatch) => {
+  //   console.log(message, "----------------->");
+  //   try {
+  //     const res = await axios.get(`http://localhost:5000/`, { message });
+  //     console.log(res);
+  //     this.setState((prev) => ({
+  //       ...prev,
+  //       messages: [...prev.messages, message],
+  //     }));
+  //   } catch (error) {}
+  // };
 }
 
 export default ActionProvider;

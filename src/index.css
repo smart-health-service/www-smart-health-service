@@ -45,3 +45,10 @@ body {
 /* .Mui-selected {
   color: #9c27b0 !important;
 } */
+.react-chatbot-kit-chat-container {
+  width: 350px !important;
+}
+
+.react-chatbot-kit-chat-bot-message {
+  margin-left: 14px !important;
+}
