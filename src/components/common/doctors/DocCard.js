@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const DocCard = ({ doc }) => {
-  console.log(doc);
   const classes = useStyles();
   return (
     <Grid item xs={12} sm={4} md={3} className={classes.docCardRoot}>

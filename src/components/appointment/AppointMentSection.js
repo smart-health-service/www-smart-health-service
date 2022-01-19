@@ -289,7 +289,7 @@ export const SlotComponent = ({
       setOpen(true);
     }
   };
-
+  console.log(selectedSlot, "picked");
   return (
     <div>
       <h3 style={{ margin: 0, marginTop: 8 }}>
@@ -305,6 +305,7 @@ export const SlotComponent = ({
             variant="contained"
             color="secondary"
             onClick={() => onSubmitClicked()}
+            disabled={selectedSlot?.booked}
           >
             Book
           </Button>

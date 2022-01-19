@@ -1,15 +1,5 @@
 import axios from "axios";
 
-// const handleMessageAction = (msg) => async () => {
-//   console.log(msg, "----------------->");
-//   try {
-//     const res = await axios.get(`http://127.0.0.1:5000/get`, msg);
-//     console.log(res);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 async function handleMessageAction(msg) {
   try {
     const response = await axios.get(`http://127.0.0.1:5000/get?msg=${msg}`);
@@ -19,7 +9,6 @@ async function handleMessageAction(msg) {
     }
   } catch (err) {
     throw err;
-    console.log(err);
   }
 }
 

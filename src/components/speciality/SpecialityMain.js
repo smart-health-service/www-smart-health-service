@@ -58,7 +58,6 @@ const SpecialityMain = ({ getDocList, docList }) => {
 
   useEffect(() => {
     getDocList(type);
-    console.log(type, "----------------------------->");
   }, []);
 
   useEffect(() => {
