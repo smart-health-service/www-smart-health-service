@@ -38,7 +38,7 @@ var tabs = [
   { name: "Services", value: "/#services" },
   { name: "Doctors", value: "/#doctors" },
   { name: "Contact Us ", value: "/#contact" },
-  { name: "Register ", value: "/register" },
+  { name: "Account ", value: "/register" },
 ];
 const LandingNav = () => {
   const classes = useStyles();

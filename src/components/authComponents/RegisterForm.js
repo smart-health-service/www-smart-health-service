@@ -99,14 +99,6 @@ const RegisterForm = ({ userDataLoading, register, user }) => {
     }
   };
 
-  useEffect(() => {
-    if (
-      window.localStorage.getItem("token") !== null &&
-      window.localStorage.getItem("token") !== undefined
-    ) {
-      window.location.href = "/dashboard";
-    }
-  }, [user, userDataLoading]);
   return (
     <Grid item xs={10} md={4} className={classes.loginRoot}>
       <div>

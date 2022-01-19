@@ -59,7 +59,7 @@ export default function MobileSideBar() {
           { name: "Services", value: "/#services" },
           { name: "Doctors", value: "/#doctors" },
           { name: "Contact Us ", value: "/#contact" },
-          { name: "Register ", value: "/register" },
+          { name: "Account ", value: "/register" },
         ].map((elem, index) => (
           <a href={elem.value}>
             <ListItem
