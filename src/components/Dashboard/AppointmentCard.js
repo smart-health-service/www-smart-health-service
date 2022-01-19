@@ -18,9 +18,10 @@ const useStyles = makeStyles((theme) => ({
         color: "#808080",
         margin: "10px",
       },
-      "&>button": {
-        width: "100%",
-        height: 50,
+      "&>a": {
+        "&>button": {
+          width: "48%",
+        },
       },
     },
   },
@@ -42,6 +43,11 @@ const AppointmentCard = () => {
         <Link href="/appointment" underline="none">
           <Button variant="contained" color="primary">
             Book a Time
+          </Button>{" "}
+        </Link>
+        <Link href="/appointment" underline="none">
+          <Button variant="contained" color="secondary">
+            view appointments
           </Button>{" "}
         </Link>
       </div>

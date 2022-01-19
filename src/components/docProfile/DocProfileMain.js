@@ -6,6 +6,10 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { START_GET_USER_DETAILS } from "../../constants/UserConstants";
 import { useParams } from "react-router-dom";
+import {
+  START_CREATE_APPOINTMENT,
+  START_GET_BOOKED_SLOTS,
+} from "../../constants/appintmentConstants";
 
 const useStyles = makeStyles((theme) => ({
   docprofileRoot: {
@@ -32,7 +36,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const DocProfileMain = ({ getUserDetails, docData }) => {
+const DocProfileMain = ({
+  getUserDetails,
+  docData,
+  createAppointment,
+  getBookedSlots,
+}) => {
   const classes = useStyles();
   const { id } = useParams();
 
@@ -43,7 +52,10 @@ const DocProfileMain = ({ getUserDetails, docData }) => {
   return (
     <div className={classes.docprofileRoot}>
       <DocCard doc={docData} />
-      <AppointMentSection />
+      <AppointMentSection
+        createAppointment={createAppointment}
+        getBookedSlots={getBookedSlots}
+      />
     </div>
   );
 };
@@ -53,6 +65,17 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   getUserDetails: (_id) => dispatch({ type: START_GET_USER_DETAILS, _id }),
+  createAppointment: (data) =>
+    dispatch({
+      type: START_CREATE_APPOINTMENT,
+      data,
+    }),
+  getBookedSlots: (_id, date) =>
+    dispatch({
+      type: START_GET_BOOKED_SLOTS,
+      _id,
+      date,
+    }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DocProfileMain);

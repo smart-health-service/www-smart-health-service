@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Link, makeStyles } from "@material-ui/core";
 import { H2, H4 } from "../common/typography/Header";
 import AppointMentSection from "./AppointMentSection";
+import { connect } from "react-redux";
+import { START_CREATE_APPOINTMENT } from "../../constants/appintmentConstants";
 
 const useStyles = makeStyles((theme) => ({
   appointmentRoot: {
@@ -80,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const AppointmentMain = () => {
+const AppointmentMain = ({ createAppointment }) => {
   const classes = useStyles();
   return (
     <div className={classes.appointmentRoot}>
@@ -125,5 +127,6 @@ const AppointmentMain = () => {
     </div>
   );
 };
-
-export default AppointmentMain;
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(AppointmentMain);

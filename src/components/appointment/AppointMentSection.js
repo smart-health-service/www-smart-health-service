@@ -1,10 +1,13 @@
-import { Card, Grid } from "@material-ui/core";
+import { Card, DialogContentText, DialogTitle, Grid } from "@material-ui/core";
 import dayjs from "dayjs";
 import Button from "@mui/material/Button";
 import React, { Component, useEffect, useState } from "react";
 import { H5, H6 } from "../common/typography/Header";
 import { makeStyles } from "@material-ui/core";
 import classNames from "classnames";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Dialog, DialogActions, DialogContent } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   AppointmentRoot: {
@@ -56,7 +59,10 @@ const availableTypes = [
     isSelected: false,
   },
 ];
-const timeSlots = [
+
+//
+let BookedSlot = [{ time: "11:30 AM" }];
+const defaultTimeSlots = [
   {
     time: dayjs("2021-12-27").add(600, "minute").format("hh:mm A"),
     isSelected: false,
@@ -122,20 +128,23 @@ const timeSlots = [
     isSelected: false,
   },
 ];
-//
-let BookedSlot = [{ time: "11:30 AM" }];
 
-function AppointMentSection() {
+function AppointMentSection({ createAppointment, getBookedSlots }) {
   const classes = useStyles();
   const [selectedType, setselectedType] = useState("");
   const [selectedSlot, setselectedSlot] = useState("");
-  const [timeSlots, settimeSlots] = useState([]);
+  const [timeSlots, settimeSlots] = useState([...defaultTimeSlots]);
   const [selectedDay, setselectedDay] = useState("");
   const [days, setdays] = useState([]);
   const [appointmentTypeList, setappointmentTypeList] = useState("");
 
   const [pickedSlot, setPickedSlot] = useState("");
 
+  const { id } = useParams();
+
+  const isBookedSlotsLoading = useSelector(
+    (state) => state.appointment.isBookedSlotsLoading
+  );
   useEffect(() => {
     let daysArr = [];
     for (var i = 0; i < 30; i++) {
@@ -155,6 +164,18 @@ function AppointMentSection() {
     }
   }, []);
 
+  useEffect(() => {
+    if (selectedDay?.key) {
+      let date = dayjs(selectedDay.date).format("YYYY-MM-DD");
+      timeSlots.map((elem) => {
+        elem["booked"] = false;
+      });
+      settimeSlots([...defaultTimeSlots]);
+
+      getBookedSlots(id, date);
+    }
+  }, [selectedDay]);
+
   return (
     <div>
       <div className={classes.AppointmentRoot}>
@@ -173,6 +194,8 @@ function AppointMentSection() {
           setappointmentTypeList={setappointmentTypeList}
           setPickedSlot={setPickedSlot}
           pickedSlot={pickedSlot}
+          createAppointment={createAppointment}
+          getBookedSlots={getBookedSlots}
         />
       </div>
     </div>
@@ -190,12 +213,16 @@ export const SlotComponent = ({
   selectedSlot,
   setPickedSlot,
   pickedSlot,
+  createAppointment,
+  getBookedSlots,
 }) => {
   //   setState({ timeSlots: timeSlots, selectedSlot: null });
 
+  const { id } = useParams();
+
   const onTimeSlotSelected = (slot, key) => {
     let selectedSlot = null;
-    const updatedSlots = timeSlots.map((oldSlot, oldKey) => {
+    const updatedSlots = defaultTimeSlots.map((oldSlot, oldKey) => {
       if (key === oldKey) {
         oldSlot.isSelected = true;
         selectedSlot = oldSlot;
@@ -204,27 +231,26 @@ export const SlotComponent = ({
       }
       return oldSlot;
     });
-    setPickedSlot(
-      dayjs(selectedDate).add(slot.minFromMidnight, "minute").format("hh:mm")
-    );
-    // setState({
-    //   timeSlots: updatedSlots,
-    //   selectedSlot: selectedSlot,
-    // });
+
+    setPickedSlot(slot?.time);
     settimeSlots(updatedSlots);
     setselectedSlot(selectedSlot);
   };
 
   const selectedDate = selectedDay.date;
 
-  console.log(timeSlots);
-  const timeSlotsItems = timeSlots.map((slot, key) => {
-    BookedSlot.map((elem) => {
-      if (slot.time === elem.time) {
-        slot["booked"] = true;
-        console.log(slot);
-      }
-    });
+  const bookedSlots = useSelector((state) => state.appointment.bookedSlots);
+  const isBookedSlotsLoading = useSelector(
+    (state) => state.appointment.isBookedSlotsLoading
+  );
+
+  const timeSlotsItems = defaultTimeSlots.map((slot, key) => {
+    !isBookedSlotsLoading &&
+      bookedSlots?.map((elem) => {
+        if (slot.time === elem.time) {
+          slot["booked"] = true;
+        }
+      });
     return (
       <Button
         color={slot.booked ? "error" : "secondary"}
@@ -242,13 +268,25 @@ export const SlotComponent = ({
     );
   });
 
+  const user = useSelector((state) => state.user.userData);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+    let data = {
+      creator: user._id,
+      notifier: id,
+      date: dayjs(selectedDate).format("YYYY-MM-DD"),
+      time: pickedSlot,
+    };
+    createAppointment(data);
+    let date = dayjs(selectedDay.date).format("YYYY-MM-DD");
+    getBookedSlots(id, date);
+  };
+
   const onSubmitClicked = () => {
     if (selectedType && selectedDay && selectedSlot) {
-      // submit
-      console.log({
-        date: dayjs(selectedDate).format("YYYY-MM-DD"),
-        time: pickedSlot,
-      });
+      setOpen(true);
     }
   };
 
@@ -271,6 +309,30 @@ export const SlotComponent = ({
             Book
           </Button>
         )}
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            Please confirm your date and Time...
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              date:{dayjs(selectedDate).format("YYYY-MM-DD")}
+            </DialogContentText>
+            <DialogContentText id="alert-dialog-description">
+              time:{pickedSlot}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancle</Button>
+            <Button onClick={handleClose} autoFocus>
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );
@@ -288,6 +350,8 @@ const CalendarComponent = ({
   selectedSlot,
   pickedSlot,
   setPickedSlot,
+  createAppointment,
+  getBookedSlots,
 }) => {
   //   const _this = this;
   //     setState({ days: days, selectedDay: null });
@@ -333,6 +397,8 @@ const CalendarComponent = ({
         selectedSlot={selectedSlot}
         setPickedSlot={setPickedSlot}
         pickedSlot={pickedSlot}
+        createAppointment={createAppointment}
+        getBookedSlots={getBookedSlots}
       />
     );
   }
@@ -389,6 +455,8 @@ const AppointmentTypeComponent = ({
   setappointmentTypeList,
   setPickedSlot,
   pickedSlot,
+  createAppointment,
+  getBookedSlots,
 }) => {
   //   setState({ appointmentTypeList: availableTypes });
 
@@ -425,6 +493,8 @@ const AppointmentTypeComponent = ({
         setPickedSlot={setPickedSlot}
         days={days}
         pickedSlot={pickedSlot}
+        createAppointment={createAppointment}
+        getBookedSlots={getBookedSlots}
       />
     );
   }

@@ -1,4 +1,8 @@
 import { all } from "redux-saga/effects";
+import {
+  bookedAppointmentApiWatcher,
+  createAppointmentWatcher,
+} from "./appointment/appointmentSaga";
 import { docListWatcher } from "./user/docSaga";
 import {
   userDetailsWatcher,
@@ -12,5 +16,7 @@ export default function* rootSaga() {
     userRegisterWatcher(),
     userDetailsWatcher(),
     docListWatcher(),
+    createAppointmentWatcher(),
+    bookedAppointmentApiWatcher(),
   ]);
 }
