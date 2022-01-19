@@ -40,12 +40,12 @@ const AppointmentCard = () => {
           please indicate weather you would like to book a time or specific
           doctor
         </H6>
-        <Link href="/appointment" underline="none">
+        <Link href="/appointment/create" underline="none">
           <Button variant="contained" color="primary">
             Book a Time
           </Button>{" "}
         </Link>
-        <Link href="/appointment" underline="none">
+        <Link href="/appointment/view" underline="none">
           <Button variant="contained" color="secondary">
             view appointments
           </Button>{" "}

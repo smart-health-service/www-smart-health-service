@@ -36,7 +36,7 @@ let PrivateRouteArr = [
   },
   {
     component: <AppointmentContainer />,
-    path: "/appointment",
+    path: "/appointment/:type",
     key: "appointment",
   },
   {

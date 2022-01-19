@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import {
   START_CREATE_APPOINTMENT,
   START_GET_BOOKED_SLOTS,
-} from "../../constants/appintmentConstants";
+} from "../../constants/appointmentConstant";
 
 const useStyles = makeStyles((theme) => ({
   docprofileRoot: {

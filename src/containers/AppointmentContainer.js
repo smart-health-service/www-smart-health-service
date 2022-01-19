@@ -1,20 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import AppointmentMain from "../components/appointment/AppointmentMain";
-import ChatBot from "../components/chatbot/ChantBotmain";
 import NavBarMain from "../components/Navbar.js/NavBarMain";
-import { START_CREATE_APPOINTMENT } from "../constants/appintmentConstants";
+import { START_GET_APPOINTMENTS } from "../constants/appointmentConstant";
 
-export const AppointmentContainer = (createAppointment) => {
+export const AppointmentContainer = ({
+  getAppointments,
+  user,
+  appointmentList,
+}) => {
   return (
     <div>
       <NavBarMain />
-      <AppointmentMain createAppointment={createAppointment} />
+      <AppointmentMain
+        getAppointments={getAppointments}
+        user={user}
+        appointmentList={appointmentList}
+      />
     </div>
   );
 };
-const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => ({});
+const mapStateToProps = (state) => ({
+  user: state.user.userData,
+  appointmentList: state.appointment.appointmentList,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getAppointments: (creator, notifier) =>
+    dispatch({ type: START_GET_APPOINTMENTS, creator, notifier }),
+});
 
 export default connect(
   mapStateToProps,
