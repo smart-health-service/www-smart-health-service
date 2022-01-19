@@ -1,12 +1,13 @@
-import { Button, Card, Grid } from "@material-ui/core";
+import { Card, Grid } from "@material-ui/core";
 import dayjs from "dayjs";
+import Button from "@mui/material/Button";
 import React, { Component, useEffect, useState } from "react";
 import { H5, H6 } from "../common/typography/Header";
 import { makeStyles } from "@material-ui/core";
+import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
   AppointmentRoot: {
-    height: 430,
     overflow: "auto",
   },
   cardGroup: {
@@ -25,35 +26,15 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  selectedDate: {
+    "&>div": {
+      backgroundColor: "#9c27b0",
+      "&>h6": {
+        color: "#FFFFFF",
+      },
+    },
+  },
 }));
-
-const timeSlots = [
-  {
-    key: "100",
-    minFromMidnight: 710,
-    isSelected: false,
-  },
-  {
-    key: "700",
-    minFromMidnight: 700,
-    isSelected: false,
-  },
-  {
-    key: "800",
-    minFromMidnight: 800,
-    isSelected: false,
-  },
-  {
-    key: "900",
-    minFromMidnight: 900,
-    isSelected: false,
-  },
-  {
-    key: "1000",
-    minFromMidnight: 1000,
-    isSelected: false,
-  },
-];
 
 const availableTypes = [
   {
@@ -75,6 +56,75 @@ const availableTypes = [
     isSelected: false,
   },
 ];
+const timeSlots = [
+  {
+    time: dayjs("2021-12-27").add(600, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(630, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(660, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(690, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(720, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(750, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(840, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(870, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(900, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(930, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(990, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(1020, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(1050, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(1080, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(1110, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+  {
+    time: dayjs("2021-12-27").add(1140, "minute").format("hh:mm A"),
+    isSelected: false,
+  },
+];
+//
+let BookedSlot = [{ time: "11:30 AM" }];
+
 function AppointMentSection() {
   const classes = useStyles();
   const [selectedType, setselectedType] = useState("");
@@ -83,6 +133,8 @@ function AppointMentSection() {
   const [selectedDay, setselectedDay] = useState("");
   const [days, setdays] = useState([]);
   const [appointmentTypeList, setappointmentTypeList] = useState("");
+
+  const [pickedSlot, setPickedSlot] = useState("");
 
   useEffect(() => {
     let daysArr = [];
@@ -101,7 +153,7 @@ function AppointMentSection() {
       });
       setdays(daysArr);
     }
-  }, [selectedDay]);
+  }, []);
 
   return (
     <div>
@@ -119,6 +171,8 @@ function AppointMentSection() {
           setselectedDay={setselectedDay}
           setdays={setdays}
           setappointmentTypeList={setappointmentTypeList}
+          setPickedSlot={setPickedSlot}
+          pickedSlot={pickedSlot}
         />
       </div>
     </div>
@@ -134,13 +188,15 @@ export const SlotComponent = ({
   settimeSlots,
   setselectedSlot,
   selectedSlot,
+  setPickedSlot,
+  pickedSlot,
 }) => {
   //   setState({ timeSlots: timeSlots, selectedSlot: null });
 
-  const onTimeSlotSelected = (slot) => {
+  const onTimeSlotSelected = (slot, key) => {
     let selectedSlot = null;
-    const updatedSlots = timeSlots.map((oldSlot) => {
-      if (oldSlot.key === slot.key) {
+    const updatedSlots = timeSlots.map((oldSlot, oldKey) => {
+      if (key === oldKey) {
         oldSlot.isSelected = true;
         selectedSlot = oldSlot;
       } else {
@@ -148,7 +204,9 @@ export const SlotComponent = ({
       }
       return oldSlot;
     });
-
+    setPickedSlot(
+      dayjs(selectedDate).add(slot.minFromMidnight, "minute").format("hh:mm")
+    );
     // setState({
     //   timeSlots: updatedSlots,
     //   selectedSlot: selectedSlot,
@@ -157,76 +215,46 @@ export const SlotComponent = ({
     setselectedSlot(selectedSlot);
   };
 
-  const onSubmitClicked = () => {
-    if (selectedType && selectedDay && selectedSlot) {
-      // submit
-      console.log(
-        "submitting",
-        "selectedType",
-        selectedType,
-        "selectedDate",
-        selectedDay.date,
-        "selectedSlot",
-        selectedSlot
-      );
-    }
-  };
-
   const selectedDate = selectedDay.date;
 
-  //   const timeSlots =  timeSlots;
-
-  const timeSlotsItems = timeSlots.map((slot) => {
+  console.log(timeSlots);
+  const timeSlotsItems = timeSlots.map((slot, key) => {
+    BookedSlot.map((elem) => {
+      if (slot.time === elem.time) {
+        slot["booked"] = true;
+        console.log(slot);
+      }
+    });
     return (
       <Button
-        variant="outlined"
-        color="primary"
+        color={slot.booked ? "error" : "secondary"}
         key={slot.key}
-        className={`button primary ${slot.isSelected ? "" : "outline"}`}
+        // className={`button primary ${slot.isSelected ? "" : "outline"}`}
+        variant={slot.isSelected ? "contained" : "outlined"}
+        disabled={slot.booked}
         style={{ margin: 8 }}
         onClick={(e) => {
-          onTimeSlotSelected(slot);
+          onTimeSlotSelected(slot, key);
         }}
       >
-        {dayjs(selectedDate)
-          .add(slot.minFromMidnight, "minute")
-          .format("hh:mm A")}
+        {slot?.time}
       </Button>
     );
   });
 
-  let submitButton = (
-    <Button
-      variant="contained"
-      color="primary"
-      className="is-full-width button"
-      style={{ lineHeight: 2 }}
-    >
-      Next
-    </Button>
-  );
-  if (selectedSlot) {
-    submitButton = (
-      <Button
-        variant="contained"
-        color="primary"
-        className="is-full-width button primary"
-        style={{ lineHeight: 2 }}
-        onClick={(e) => {
-          onSubmitClicked(selectedSlot);
-        }}
-      >
-        Next
-      </Button>
-    );
-  }
+  const onSubmitClicked = () => {
+    if (selectedType && selectedDay && selectedSlot) {
+      // submit
+      console.log({
+        date: dayjs(selectedDate).format("YYYY-MM-DD"),
+        time: pickedSlot,
+      });
+    }
+  };
 
   return (
     <div>
-      <h3
-        className="text-uppercase text-primary bold"
-        style={{ fontWeight: "lighter", marginLeft: 8 }}
-      >
+      <h3 style={{ margin: 0, marginTop: 8 }}>
         {dayjs(selectedDate).format("dddd, DD MMM YYYY")}
       </h3>
       <div className="is-full-width">{timeSlotsItems}</div>
@@ -234,7 +262,15 @@ export const SlotComponent = ({
         className="is-full-width is-center"
         style={{ marginTop: 38, margin: 8 }}
       >
-        {submitButton}
+        {pickedSlot && (
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => onSubmitClicked()}
+          >
+            Book
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -250,6 +286,8 @@ const CalendarComponent = ({
   selectedDay,
   days,
   selectedSlot,
+  pickedSlot,
+  setPickedSlot,
 }) => {
   //   const _this = this;
   //     setState({ days: days, selectedDay: null });
@@ -293,6 +331,8 @@ const CalendarComponent = ({
         settimeSlots={settimeSlots}
         setselectedSlot={setselectedSlot}
         selectedSlot={selectedSlot}
+        setPickedSlot={setPickedSlot}
+        pickedSlot={pickedSlot}
       />
     );
   }
@@ -305,8 +345,7 @@ const CalendarComponent = ({
   );
 };
 
-const DayComponent = ({ key, day, selectDateClicked }) => {
-  const isSelected = day.isSelected;
+const DayComponent = ({ day, selectDateClicked }) => {
   const classes = useStyles();
   const dateObject = day.date;
 
@@ -322,10 +361,11 @@ const DayComponent = ({ key, day, selectDateClicked }) => {
       onClick={(e) => {
         selectDateClicked(day);
       }}
+      className={classNames(day.isSelected && classes.selectedDate)}
     >
       <Card>
         <H6 bold>{month}</H6>
-
+        {day.isSelected}
         <H6 bold>{date}</H6>
         <H6 bold>{year}</H6>
       </Card>
@@ -347,6 +387,8 @@ const AppointmentTypeComponent = ({
   setselectedDay,
   setdays,
   setappointmentTypeList,
+  setPickedSlot,
+  pickedSlot,
 }) => {
   //   setState({ appointmentTypeList: availableTypes });
 
@@ -380,7 +422,9 @@ const AppointmentTypeComponent = ({
         setselectedSlot={setselectedSlot}
         selectedDay={selectedDay}
         selectedSlot={selectedSlot}
+        setPickedSlot={setPickedSlot}
         days={days}
+        pickedSlot={pickedSlot}
       />
     );
   }
@@ -392,8 +436,8 @@ const AppointmentTypeComponent = ({
         {availableTypes.map((appointmentType) => (
           <Button
             key={appointmentType.clinicId}
-            color="primary"
-            variant="outlined"
+            color="secondary"
+            variant={appointmentType.isSelected ? "contained" : "outlined"}
             style={{ margin: 8 }}
             onClick={(e) => {
               onAppointmentTypeSelected(appointmentType);

@@ -36,7 +36,7 @@ const Speciality = ({ data, currenttab }) => {
   return (
     <Grid item xs={6} sm={4} md={2} className={classes.docCardRoot}>
       <Link
-        href={`/${currenttab}?type=${data?.title?.text.replaceAll(" ", "")}`}
+        href={`/${currenttab}/${data?.title?.text.replaceAll(" ", "")}`}
         underline="none"
       >
         <div>

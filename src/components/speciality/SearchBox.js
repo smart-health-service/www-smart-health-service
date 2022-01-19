@@ -7,14 +7,9 @@ import SearchIcon from "@mui/icons-material/Search";
 const useStyles = makeStyles((theme) => ({
   serchboxRoot: {
     background: "#FFFFFF",
-    height: "fir-content",
-    margin: "0 auto",
-    marginTop: -40,
-    borderRadius: 10,
-    boxShadow:
-      "0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 12px -5px rgb(156 39 176 / 46%)",
+
     "&>div": {
-      padding: "40px 16px",
+      padding: 16,
       "&>div": {
         display: "flex",
         justifyContent: "space-between",

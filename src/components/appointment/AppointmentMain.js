@@ -93,7 +93,7 @@ const AppointmentMain = () => {
                 alt="appointment"
               />
               <H4 bold>Make An Appointment</H4>
-              <Link href="/doc-specialits" underline="none">
+              <Link href="/doc-specialits/doc" underline="none">
                 <Button variant="contained" color="primary">
                   Book a Time
                 </Button>
@@ -113,7 +113,7 @@ const AppointmentMain = () => {
               </div>
 
               <H4 bold>Request For Medical Checkup</H4>
-              <Link href="/test-specialits" underline="none">
+              <Link href="/test-specialits/test" underline="none">
                 <Button variant="contained" color="secondary">
                   Book a Time
                 </Button>

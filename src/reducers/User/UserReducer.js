@@ -58,27 +58,6 @@ export const user = (previousState, action) => {
         error: action.error,
       };
 
-    case START_GET_USER_DETAILS:
-      return {
-        ...previousState,
-        userDataLoading: true,
-        userData: {},
-      };
-
-    case SUCCESS_GET_USER_DETAILS:
-      return {
-        ...previousState,
-        userDataLoading: false,
-        userData: action.data,
-      };
-
-    case ERROR_GET_USER_DETAILS:
-      return {
-        ...previousState,
-        userDataLoading: false,
-        // userData: action.data,
-      };
-
     default:
       return previousState || initState;
   }

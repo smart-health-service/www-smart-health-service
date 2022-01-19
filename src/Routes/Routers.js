@@ -26,12 +26,12 @@ let PrivateRouteArr = [
   },
   {
     component: <SpecialityContainer />,
-    path: "/doc-specialits",
+    path: "/doc-specialits/:type",
     key: "DocSpecialits",
   },
   {
     component: <SpecialityContainer />,
-    path: "/test-specialits",
+    path: "/test-specialits/:type",
     key: "TestSecialits",
   },
   {
@@ -41,7 +41,7 @@ let PrivateRouteArr = [
   },
   {
     component: <DocProfileContainer />,
-    path: "/doc-profile",
+    path: "/doc-profile/:id",
     key: "docProfile",
   },
 ];

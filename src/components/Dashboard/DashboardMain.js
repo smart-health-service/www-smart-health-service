@@ -78,7 +78,7 @@ const DashboardMain = ({ user }) => {
             {/* <FeatureRows /> */}
             <div className={classes.doctorListHeader}>
               <H5 bold>Our Specialities</H5>
-              <Link to="/doc-specialits">view more {">"}</Link>
+              <Link to="/doc-specialits/doc">view more {">"}</Link>
             </div>
             <Grid container spacing={2}>
               <Grid container spacing={2}>

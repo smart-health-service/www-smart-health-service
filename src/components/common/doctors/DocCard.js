@@ -52,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const DocCard = () => {
+const DocCard = ({ doc }) => {
+  console.log(doc);
   const classes = useStyles();
   return (
     <Grid item xs={12} sm={4} md={3} className={classes.docCardRoot}>
@@ -63,14 +64,13 @@ const DocCard = () => {
             alt="appointment"
           />
           <div className={classes.docData}>
-            <H5>name</H5>
+            <H5>{doc?.name}</H5>
             <Subtitle1>BPT,MPT</Subtitle1>
-            <Body1>Psychod Therapist</Body1>
+            <Body1>{doc?.specialist}</Body1>
             <Body1>
               <TextsmsIcon />
-              English Hindi
+              English , Hindi
             </Body1>
-            <Body1>Ratings</Body1>
           </div>
         </div>
         <div className={classes.docCardbuttonGroup}>
@@ -78,7 +78,7 @@ const DocCard = () => {
             Know More
           </Button>
 
-          <Link href="/doc-profile" underline="none">
+          <Link href={`/doc-profile/${doc?._id}`} underline="none">
             <Button color="secondary" variant="contained">
               Consult Now
             </Button>

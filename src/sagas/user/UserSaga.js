@@ -70,8 +70,8 @@ export function* userRegisterWatcher() {
   yield takeEvery(START_USER_REGISTER, userRegisterWorker);
 }
 
-export function* userDetailsWorker({ id }) {
-  const response = yield call(getUserDetails, id);
+export function* userDetailsWorker({ _id }) {
+  const response = yield call(getUserDetails, _id);
   try {
     if (response !== undefined) {
       yield put({ type: SUCCESS_GET_USER_DETAILS, data: response });

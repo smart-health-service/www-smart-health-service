@@ -11,12 +11,17 @@ export function userRegister(name, email, password) {
 }
 
 export function getUserDetails(_id) {
-  const data = api.get(`/users`, { _id });
+  const data = api.get(`/users?_id=${_id}`);
   return data;
 }
 
 export function addToFavourite(value) {
   console.log(value, "api");
   const data = api.post(`/users/watchlist`, value);
+  return data;
+}
+
+export function getDocList(type) {
+  const data = api.get(`/doctor?specialist=${type}`);
   return data;
 }
