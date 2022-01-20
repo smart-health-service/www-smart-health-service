@@ -178,7 +178,7 @@ const AppointmentMain = ({ getAppointments, user, appointmentList }) => {
         {type === "view" && (
           <div className={classes.listRoot}>
             <H4 bold>Appointments</H4>
-            <TableContainer sx={{ maxHeight: "84vh" }} component={Paper}>
+            <TableContainer sx={{ maxHeight: "79vh" }} component={Paper}>
               <Table
                 stickyHeader
                 sx={{ minWidth: 700 }}
