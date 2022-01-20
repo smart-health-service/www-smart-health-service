@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const LoginForm = ({ login, userDataLoading, user }) => {
+const LoginForm = ({ login, userDataLoading, user, error }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [email, setemail] = useState("");
@@ -108,6 +108,7 @@ const LoginForm = ({ login, userDataLoading, user }) => {
           }}
         />
         <H6>{passwordError}</H6>
+        <H6>{error}</H6>
         <Button
           startIcon={
             userDataLoading && <CircularProgress size={15} color="primary" />

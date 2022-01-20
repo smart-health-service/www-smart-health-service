@@ -30,7 +30,7 @@ export const appointment = (previousState, action) => {
       return {
         ...previousState,
         isAppointmentCreating: false,
-        appointmentResponse: action.data,
+        bookedSlots: action.data,
       };
     case ERROR_CREATE_APPOINTMENT:
       return {

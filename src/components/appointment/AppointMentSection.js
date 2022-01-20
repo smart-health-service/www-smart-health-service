@@ -328,8 +328,15 @@ export const SlotComponent = ({
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancle</Button>
-            <Button onClick={handleClose} autoFocus>
+            <Button variant="outlined" color="secondary" onClick={handleClose}>
+              Cancle
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleClose}
+              autoFocus
+            >
               Agree
             </Button>
           </DialogActions>

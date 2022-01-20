@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const RegisterForm = ({ userDataLoading, register, user }) => {
+const RegisterForm = ({ userDataLoading, register, user, error }) => {
   const classes = useStyles();
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
@@ -135,6 +135,7 @@ const RegisterForm = ({ userDataLoading, register, user }) => {
           }}
         />
         <H6>{passwordError}</H6>
+        <H6>{error}</H6>
         <CommonTextField
           variant="outlined"
           label="confirm password"
