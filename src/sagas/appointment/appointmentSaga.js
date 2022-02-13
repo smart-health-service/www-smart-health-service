@@ -3,7 +3,9 @@ import {
   createAppointment,
   getAppointmentList,
   getBookedSLots,
+  updateAppointmentStatus,
 } from "../../actions/appointMentApi";
+
 import {
   ERROR_CREATE_APPOINTMENT,
   ERROR_GET_APPOINTMENTS,
@@ -14,6 +16,9 @@ import {
   SUCCESS_CREATE_APPOINTMENT,
   SUCCESS_GET_APPOINTMENTS,
   SUCCESS_GET_BOOKED_SLOTS,
+  ERROR_UPDATE_APP_STATUS,
+  START_UPDATE_APP_STATUS,
+  SUCCESS_UPDATE_APP_STATUS,
 } from "../../constants/appointmentConstant";
 
 function* createAppointmentWorker({ data }) {
@@ -24,6 +29,7 @@ function* createAppointmentWorker({ data }) {
         type: SUCCESS_CREATE_APPOINTMENT,
         data: response,
       });
+      window.location.href = "/appointment/view";
     } else {
       yield put({
         type: ERROR_CREATE_APPOINTMENT,
@@ -64,8 +70,8 @@ export function* bookedAppointmentApiWatcher() {
   yield takeEvery(START_GET_BOOKED_SLOTS, bookedAppointmentApiWorker);
 }
 
-function* appointmentListWorker({ creator, notifier }) {
-  const response = yield call(getAppointmentList, creator, notifier);
+function* appointmentListWorker({ creator, assignee }) {
+  const response = yield call(getAppointmentList, creator, assignee);
   try {
     if (response) {
       yield put({
@@ -86,4 +92,28 @@ function* appointmentListWorker({ creator, notifier }) {
 
 export function* appointmentListWatcher() {
   yield takeEvery(START_GET_APPOINTMENTS, appointmentListWorker);
+}
+
+function* appointmentStateWorker({ data }) {
+  console.log(data, "sagaga");
+  const response = yield call(updateAppointmentStatus, data);
+  try {
+    if (response) {
+      yield put({
+        type: SUCCESS_UPDATE_APP_STATUS,
+      });
+    } else {
+      yield put({
+        type: ERROR_UPDATE_APP_STATUS,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: ERROR_UPDATE_APP_STATUS,
+    });
+  }
+}
+
+export function* appointmentStateWatcher() {
+  yield takeEvery(START_UPDATE_APP_STATUS, appointmentStateWorker);
 }

@@ -25,8 +25,8 @@ const mapStateToProps = (state) => ({
   appointmentList: state.appointment.appointmentList,
 });
 const mapDispatchToProps = (dispatch) => ({
-  getAppointments: (creator, notifier) =>
-    dispatch({ type: START_GET_APPOINTMENTS, creator, notifier }),
+  getAppointments: (creator, assignee) =>
+    dispatch({ type: START_GET_APPOINTMENTS, creator, assignee }),
 });
 
 export default connect(
