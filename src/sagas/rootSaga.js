@@ -1,6 +1,7 @@
 import { all } from "redux-saga/effects";
 import {
   appointmentListWatcher,
+  appointmentStateWatcher,
   bookedAppointmentApiWatcher,
   createAppointmentWatcher,
 } from "./appointment/appointmentSaga";
@@ -20,5 +21,6 @@ export default function* rootSaga() {
     createAppointmentWatcher(),
     bookedAppointmentApiWatcher(),
     appointmentListWatcher(),
+    appointmentStateWatcher(),
   ]);
 }

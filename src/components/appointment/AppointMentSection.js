@@ -246,6 +246,7 @@ export const SlotComponent = ({
 
   const timeSlotsItems = defaultTimeSlots.map((slot, key) => {
     !isBookedSlotsLoading &&
+      bookedSlots &&
       bookedSlots?.map((elem) => {
         if (slot.time === elem.time) {
           slot["booked"] = true;
@@ -275,7 +276,7 @@ export const SlotComponent = ({
     setOpen(false);
     let data = {
       creator: user._id,
-      notifier: id,
+      assignee: id,
       date: dayjs(selectedDate).format("YYYY-MM-DD"),
       time: pickedSlot,
     };

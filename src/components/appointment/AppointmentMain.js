@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, Link, makeStyles } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Button, Link, makeStyles, Chip, MenuItem } from "@material-ui/core";
 import { H2, H4 } from "../common/typography/Header";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-
+import { START_UPDATE_APP_STATUS } from "../../constants/appointmentConstant";
+import { Select } from "@mui/material";
+import StatusCard from "./StatusCard";
 const useStyles = makeStyles((theme) => ({
   appointmentRoot: {
     height: "calc(100vh - 100px)",
@@ -89,36 +91,48 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   listRoot: {
+    "&>h4": {
+      marginBottom: 16,
+    },
     "&>ul": {
       maxWidth: "100%",
     },
   },
 }));
-const AppointmentMain = ({ getAppointments, user, appointmentList }) => {
-  console.log(appointmentList, "ppppppppp");
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#ff9f00",
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
+const AppointmentMain = ({
+  getAppointments,
+  user,
+  appointmentList,
+  updateAppStatus,
+}) => {
   useEffect(() => {
-    getAppointments(user?._id);
+    if (user.isDoctor) {
+      getAppointments("", user?._id);
+    } else {
+      getAppointments(user?._id);
+    }
   }, []);
-
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#ff9f00",
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
 
   const classes = useStyles();
   const { type } = useParams();
@@ -167,7 +181,7 @@ const AppointmentMain = ({ getAppointments, user, appointmentList }) => {
         {type === "view" && (
           <div className={classes.listRoot}>
             <H4 bold>Appointments</H4>
-            <TableContainer sx={{ maxHeight: "79vh" }} component={Paper}>
+            <TableContainer sx={{ maxHeight: "77vh" }} component={Paper}>
               <Table
                 stickyHeader
                 sx={{ minWidth: 700 }}
@@ -184,25 +198,32 @@ const AppointmentMain = ({ getAppointments, user, appointmentList }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {appointmentList?.map((row) => (
-                    <StyledTableRow key={row.name}>
-                      <StyledTableCell component="th" scope="row">
-                        {row?.notifier}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {/* {row.status} */}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {row?.date}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {row?.time}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {row?.status}
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
+                  {appointmentList &&
+                    appointmentList?.map((row) => (
+                      <StyledTableRow key={row.name}>
+                        <StyledTableCell component="th" scope="row">
+                          {user.isDoctor
+                            ? row?.creator?.name
+                            : row?.assignee?.name}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">
+                          {row?.assignee?.specialist}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">
+                          {row?.date}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">
+                          {row?.time}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">
+                          <StatusCard
+                            user={user}
+                            row={row}
+                            updateAppStatus={updateAppStatus}
+                          />
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -213,5 +234,8 @@ const AppointmentMain = ({ getAppointments, user, appointmentList }) => {
   );
 };
 const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  updateAppStatus: (data) => dispatch({ type: START_UPDATE_APP_STATUS, data }),
+});
+
 export default connect(mapStateToProps, mapDispatchToProps)(AppointmentMain);

@@ -8,6 +8,9 @@ import {
   SUCCESS_CREATE_APPOINTMENT,
   SUCCESS_GET_APPOINTMENTS,
   SUCCESS_GET_BOOKED_SLOTS,
+  ERROR_UPDATE_APP_STATUS,
+  START_UPDATE_APP_STATUS,
+  SUCCESS_UPDATE_APP_STATUS,
 } from "../../constants/appointmentConstant";
 
 const initState = {
@@ -70,6 +73,23 @@ export const appointment = (previousState, action) => {
         appointmentList: action.data,
       };
     case ERROR_GET_APPOINTMENTS:
+      return {
+        ...previousState,
+        isAppointmentLoading: false,
+      };
+
+    case START_UPDATE_APP_STATUS:
+      return {
+        ...previousState,
+        isAppointmentLoading: true,
+      };
+    case SUCCESS_UPDATE_APP_STATUS:
+      return {
+        ...previousState,
+        isAppointmentLoading: false,
+      };
+
+    case ERROR_UPDATE_APP_STATUS:
       return {
         ...previousState,
         isAppointmentLoading: false,
