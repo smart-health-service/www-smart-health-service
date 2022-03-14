@@ -51,7 +51,7 @@ const NavBarMain = ({ tabs }) => {
   return (
     <div className={classes.root}>
       <Box>
-        <Link href="/" underline="none">
+        <Link href="/dashboard" underline="none">
           <Logo />
         </Link>
 
