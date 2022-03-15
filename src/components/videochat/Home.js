@@ -15,7 +15,7 @@ const SmartChat = () => {
     <VideoState>
       <div
         className="App"
-        style={{ height: "100%", width: "100%", padding: "150px 0" }}
+        style={{ height: "100%", width: "100%", paddingTop: 50 }}
       >
         <Video />
         <Options />
