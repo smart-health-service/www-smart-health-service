@@ -5,7 +5,7 @@ import Peer from "simple-peer";
 import { message } from "antd";
 
 // const URL = "https://fathomless-tundra-67025.herokuapp.com/";
-const URL = "http://localhost:5000/";
+const URL = process.env.REACT_APP_SOCKET_URL;
 
 export const socket = io(URL);
 
