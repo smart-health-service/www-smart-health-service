@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { lazy } from "react";
 import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import SmartChat from "../components/videochat/Home";
 import Loading from "../containers/Loading";
 // components
 const DashboardContainer = lazy(() => import("../containers/DashBoard"));
@@ -43,6 +44,11 @@ let PrivateRouteArr = [
     component: <DocProfileContainer />,
     path: "/doc-profile/:id",
     key: "docProfile",
+  },
+  {
+    component: <SmartChat />,
+    path: "/smart-chat",
+    key: "samrt-chat",
   },
 ];
 const Routers = () => {

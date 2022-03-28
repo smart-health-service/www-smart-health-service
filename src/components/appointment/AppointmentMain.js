@@ -190,11 +190,16 @@ const AppointmentMain = ({
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>Name</StyledTableCell>
-                    <StyledTableCell align="right">Spealist</StyledTableCell>
+                    <StyledTableCell align="center">Spealist</StyledTableCell>
 
-                    <StyledTableCell align="right">date&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">time&nbsp;</StyledTableCell>
-                    <StyledTableCell align="right">Status</StyledTableCell>
+                    <StyledTableCell align="center">date&nbsp;</StyledTableCell>
+                    <StyledTableCell align="center">time&nbsp;</StyledTableCell>
+                    {!user?.isDoctor && (
+                      <StyledTableCell align="center">
+                        Meeting Details
+                      </StyledTableCell>
+                    )}
+                    <StyledTableCell align="center">Status</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -206,16 +211,21 @@ const AppointmentMain = ({
                             ? row?.creator?.name
                             : row?.assignee?.name}
                         </StyledTableCell>
-                        <StyledTableCell align="right">
+                        <StyledTableCell align="center">
                           {row?.assignee?.specialist}
                         </StyledTableCell>
-                        <StyledTableCell align="right">
+                        <StyledTableCell align="center">
                           {row?.date}
                         </StyledTableCell>
-                        <StyledTableCell align="right">
+                        <StyledTableCell align="center">
                           {row?.time}
                         </StyledTableCell>
-                        <StyledTableCell align="right">
+                        {!user?.isDoctor && (
+                          <StyledTableCell align="center">
+                            {row?.room}
+                          </StyledTableCell>
+                        )}
+                        <StyledTableCell align="center">
                           <StatusCard
                             user={user}
                             row={row}

@@ -22,6 +22,7 @@ export function updateAppointmentStatus(data) {
   const response = api.post("appointments/status", {
     _id: data._id,
     status: data.status,
+    roomId: data.roomId,
   });
   return response;
 }

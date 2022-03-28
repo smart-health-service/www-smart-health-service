@@ -1,8 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { IconButton, Link, makeStyles } from "@material-ui/core";
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { H6 } from "../common/typography/Header";
 import { connect } from "react-redux";
+import VideoCameraFrontRoundedIcon from "@mui/icons-material/VideoCameraFrontRounded";
 
 const useStyles = makeStyles((theme) => ({
   navMenu: {
@@ -46,6 +47,11 @@ const NavMenu = ({ user }) => {
   const token = localStorage.getItem("token");
   return (
     <div className={classes.navMenu}>
+      <a href="/smart-chat" target="_blank">
+        <IconButton color="primary">
+          <VideoCameraFrontRoundedIcon />
+        </IconButton>
+      </a>
       {token && (
         <Button onClick={handleMenu} color="inherit">
           <Avatar />

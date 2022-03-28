@@ -1,10 +1,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { makeStyles } from "@material-ui/core";
+import { IconButton, makeStyles } from "@material-ui/core";
 import { ReactComponent as Logo } from "../../assets/icons/SmartHealthLogo.svg";
 import NavMenu from "./NavMenu";
 import { Link } from "@mui/material";
-
+import VideoCameraFrontRoundedIcon from "@mui/icons-material/VideoCameraFrontRounded";
 const useStyles = makeStyles((theme) => ({
   root: {
     top: 0,
@@ -21,9 +21,15 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      "&>a>svg": {
-        cursor: "pointer",
-        padding: 7,
+      "&>a": {
+        height: 24,
+        width: 24,
+        "&>svg": {
+          cursor: "pointer",
+          padding: 7,
+          height: 24,
+          width: 24,
+        },
       },
     },
   },
@@ -51,7 +57,7 @@ const NavBarMain = ({ tabs }) => {
   return (
     <div className={classes.root}>
       <Box>
-        <Link href="/" underline="none">
+        <Link href="/dashboard" underline="none">
           <Logo />
         </Link>
 
